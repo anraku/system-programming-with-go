@@ -21,9 +21,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	defer oldFile.Close()
 	newFile, err := os.Create(dist)
 	if err != nil {
 		panic(err)
 	}
+	defer newFile.Close()
+
 	io.Copy(newFile, oldFile)
 }
